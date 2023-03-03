@@ -1,0 +1,133 @@
+.home{
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f1f1f1;
+    .home_nav{
+        height: 45px;
+        width: 100%;
+        padding: 0px 10px;
+        box-sizing: border-box;
+        background-color: #3190e8;
+        display: flex;
+        justify-content: space-between;
+        line-height: 45px;
+        color: #fff;
+        .home_search{
+            width: 20%;
+            display: flex;
+            align-items: center;
+        }
+        .home_title{
+            font-size: 18px;
+            font-weight: 500;
+            width: 50%;
+            line-height: 45px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+        }
+    }
+    .home_mid{
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        background-color: #fff;
+        box-sizing: border-box;
+        .fjsj{
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: #9b9b9b;
+        }
+        .shopitem{
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 0px;
+            box-sizing: border-box;
+            border-bottom: 1px solid #f1f1f1;
+            .shopitemleft{
+                img{
+                    width: 70px;
+                }
+            }
+            .shopitemmid{
+                display: flex;
+                flex-wrap: wrap;
+                align-content: space-between;
+                margin: 0px 10px;
+                .mid_top{
+                    display: flex;
+                    align-items: center;
+                    .pinpai{
+                        display: inline-block;
+                        background-color: #3190e8;
+                        padding: 2px 3px;
+                        box-sizing: border-box;
+                        font-size: 12px;
+                        color: #fff;
+                        border-radius: 2px;
+                    }
+                    .mid_name{
+                        font-size: 16px;
+                        font-weight: bold;
+                        margin-left: 5px;
+                    }
+                }
+                .mid_mid{
+                    font-size: 12px;
+                    color: #666;
+                }
+                .mid_btm{
+                    font-size: 14px;
+                    color: #666;
+                }
+            }
+            .shopitemright{
+                display: flex;
+                flex-wrap: wrap;
+                align-content: space-between;
+                justify-content: flex-end;
+                .right_top{
+                    .bzp{
+                        display: inline-block;
+                        font-size: 12px;
+                        border: 1px solid #f1f1f1;
+                        margin-left: 1px;
+                        transform: scale(0.8);
+                        color: #b4b4b4;
+                    }
+                }
+                .right_mid{
+                    .fnzs{
+                        background-color: #3190e8;
+                        color: #fff;
+                        font-size: 12px;
+                        padding: 1px 4px;
+                        box-sizing: border-box;
+                        border-radius: 3px;
+                        border: 1px solid #3190e8;
+                    }
+                    .zsd{
+                        background-color: #fff;
+                        color: #3190e8;
+                        padding: 1px 4px;
+                        box-sizing: border-box;
+                        border-radius: 3px;
+                        border: 1px solid #3190e8;
+                        font-size: 12px;
+                        margin-left: 2px;
+                    }
+                }
+                .right_btm{
+                    font-size: 14px;
+                    color: #b4b4b4;
+                    .pssj{
+                        color: #3190e8;
+                    }
+                }
+            }
+        }
+    }
+}

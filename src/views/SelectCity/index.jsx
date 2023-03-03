@@ -4,7 +4,7 @@ import { Cell, Grid } from 'react-vant';
 import { getNowCity, getHotCity, getAllCity } from '../../api/index'
 import './index.less'
 
-export default function Index() {
+export default function SelectCity() {
 
     //定位当前城市
     let [nowCity, setNowCity] = useState({})
