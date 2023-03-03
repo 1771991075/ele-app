@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { Tabbar } from 'react-vant';
 import { HomeO, GuideO, OrdersO, UserO } from '@react-vant/icons';
-import './index.less'
 
 export default function Index() {
     let [active, setActive] = useState(0)
