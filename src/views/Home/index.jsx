@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react"
-import { useSearchParams } from "react-router-dom"
+import { useNavigate, useSearchParams } from "react-router-dom"
 import { getHeohash, getHomeCate, getShop } from '../../api/home'
+import { getNowCity} from '../../api/index'
 import { Search, ShopO, StarO } from '@react-vant/icons';
 import HomeSwiper from "../../component/Home/Swiper";
 import './index.less'
 
 export default function Home() {
     let [search] = useSearchParams()
+    let navigate = useNavigate()
     let geohash = search.get('geohash')
 
     let [cityInfo, setCityInfo] = useState({})
@@ -16,7 +18,13 @@ export default function Home() {
 
     useEffect(() => {
         //获取地区详细信息
-        getHeohash(geohash).then(res => setCityInfo(res.data))
+        if(!geohash){
+            getNowCity().then(res=>{
+                getHeohash(res.data.geohash).then(res => setCityInfo(res.data))
+            })
+        }else{
+            getHeohash(geohash).then(res => setCityInfo(res.data))
+        }
         //获取home分类列表
         getHomeCate().then(res => setHomeCateList(res.data))
         //获取附近商家
@@ -30,7 +38,7 @@ export default function Home() {
                 <div className="home_search">
                     <Search fontSize={25} />
                 </div>
-                <div className="home_title">
+                <div className="home_title" onClick={()=>navigate('/selectCity')}>
                     <p>{cityInfo.name}</p>
                 </div>
                 <div>

@@ -48,9 +48,9 @@ export default function City() {
             let oldSearch = JSON.parse(localStorage.getItem('historyList'))
             oldSearch.push(cityInfoList[idx])
             localStorage.setItem('historyList', JSON.stringify(oldSearch))
-            navigate(`/home?${geohash}`)
+            navigate(`/index/home?geohash=${geohash}`)
         }
-        navigate(`/home?geohash=${geohash}`)
+        navigate(`/index/home?geohash=${geohash}`)
     }
 
     //删除关键字清空列表

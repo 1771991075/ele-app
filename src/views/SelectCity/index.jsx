@@ -65,11 +65,11 @@ export default function SelectCity() {
                 <Cell title='所有城市' />
                 <div>
                     {
-                        Object.keys(allCity).map((item, index) => {
+                        Object.keys(allCity).sort().map((item, index) => {
                             return (
                                 <div key={index}>
                                     <Cell title={item} className='szmcity'/>
-                                    <Grid border={true} columnNum={4}>
+                                    <Grid border={true} columnNum={4} className='cityy'>
                                         {
                                             allCity[item].map((i, idx) => {
                                                 return (
