@@ -2,7 +2,8 @@ import { useEffect, useState } from "react"
 import { useNavigate, useSearchParams } from "react-router-dom"
 import { getHeohash, getHomeCate, getShop } from '../../api/home'
 import { getNowCity} from '../../api/index'
-import { Search, ShopO, StarO } from '@react-vant/icons';
+import { Search, ShopO } from '@react-vant/icons';
+import { Rate } from 'react-vant';
 import HomeSwiper from "../../component/Home/Swiper";
 import './index.less'
 
@@ -59,7 +60,7 @@ export default function Home() {
                                 </div>
                                 <div className="shopitemmid">
                                     <div className="mid_top"><span className="pinpai">品牌</span><span className="mid_name">{item.name}</span></div>
-                                    <div className="mid_mid"><StarO /><span>{item.rating}分</span><span>月销{item.recent_order_num}单</span></div>
+                                    <div className="mid_mid"><Rate value={item.rating} size={12} gutter={1} color={'rgb(255, 210, 30)'} /><span className="star"> {item.rating}</span><span className="yuexiao"> 月销{item.recent_order_num}单</span></div>
                                     <div className="mid_btm">￥{item.float_minimum_order_amount}起送/{item.piecewise_agent_fee.tips}</div>
                                 </div>
                                 <div className="shopitemright">
