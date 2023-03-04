@@ -8,11 +8,12 @@ import { Arrow,GoldCoinO,ClockO ,StarO,Exchange,FireO,Success,BrowsingHistoryO} 
 export default function Cate() {
     //获取传递过来的参数
     let [search] = useSearchParams()
-    let title = search.get('title')
     let latitude = search.get('latitude')
     let longitude = search.get('longitude')
     let restaurant_category_id = search.get('restaurant_category_id')
     let navigate = useNavigate()
+    //左侧title
+    let [title,setTitle] = useState(search.get('title'))
     //顶部下拉菜单
     let [value, setValue] = useState('')
     //商家店铺列表
@@ -44,7 +45,8 @@ export default function Cate() {
         Toast.clear()
     }
     //选择类别
-    let selectCate = (ids,sub_id) =>{
+    let selectCate = (ids,sub_id,title) =>{
+        setTitle(title)
         getCateSubInfo(latitude, longitude, restaurant_category_id,ids,sub_id,sortType).then(res=>{
             setCateList(res.data)
         })
@@ -53,12 +55,16 @@ export default function Cate() {
 
     //点击筛选
     let openSx = () =>{
-        sendType(latitude, longitude).then(res=>{
-            setSongType(res.data[0].text)
-        })
-        getShopsx(latitude, longitude).then(res=>{
-            setShopSx(res.data)
-        })
+        if(!songType){
+            sendType(latitude, longitude).then(res=>{
+                setSongType(res.data[0].text)
+            })
+        }
+        if(shopSx.length===0){
+            getShopsx(latitude, longitude).then(res=>{
+                setShopSx(res.data)
+            })
+        }
     }
 
     useEffect(() => {
@@ -94,7 +100,7 @@ export default function Cate() {
                                         <Sidebar.Item contentStyle={{ backgroundColor: '#fff', padding: '18px 10px' }} title={<div className='subtitle'>{item.name}<Arrow /></div>} key={index} badge={item.count} >
                                             {
                                                 item.sub_categories.map((i, idx) => {
-                                                    return <div key={idx} className='itemitem' onClick={()=>selectCate(item.ids[0],i.id)}><span>{i.name}</span><span>{i.count}</span></div>
+                                                    return <div key={idx} className='itemitem' onClick={()=>selectCate(item.ids[0],i.id,i.name)}><span>{i.name}</span><span>{i.count}</span></div>
                                                 })
                                             }
                                         </Sidebar.Item>
