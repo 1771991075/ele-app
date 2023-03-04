@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { Swiper } from 'react-vant';
 import './index.less'
 
 export default function HomeSwiper(props) {
 
     let [list, setList] = useState([])
+    let navigate = useNavigate()
 
     useEffect(() => {
         let sum = props.homeCateList.length
@@ -17,6 +19,11 @@ export default function HomeSwiper(props) {
         console.log(list);
     },[props.homeCateList])
 
+    let goCate = (id,title)=>{
+        navigate(`/cate?title=${title}&latitude=${props.latitude}&longitude=${props.longitude}&restaurant_category_id=${id}`)
+    }
+
+
     return (
         <div className='home_swiper1'>
             {
@@ -28,7 +35,7 @@ export default function HomeSwiper(props) {
                                     {
                                         item.map((i,idx)=>{
                                             return <div key={idx} className='swiperitem'>
-                                                <img src={`https://fuss10.elemecdn.com/${i.image_url}`} className='itemimg' alt="" />
+                                                <img src={`https://fuss10.elemecdn.com/${i.image_url}`} className='itemimg' alt="" onClick={()=>goCate(i.id,i.title)}/>
                                                 <p>{i.title}</p>
                                             </div>
                                         })

@@ -7,6 +7,7 @@ let SelectCity = lazy(()=>import('../views/SelectCity'))
 let Mine = lazy(()=>import('../views/Mine'))
 let SearchInfo = lazy(()=>import('../views/SearchInfo'))
 let Order = lazy(()=>import('../views/Order'))
+let Cate = lazy(()=>import('../views/Cate'))
 let NotFound = lazy(()=>import('../component/NotFound'))
 
 
@@ -37,6 +38,11 @@ let elements = [
                 author:false,
             }
         ]
+    },
+    {
+        path:'/cate',
+        element:<Suspense fallback={'loading.....'}><Cate/></Suspense>,
+        author:false
     },
     {
         path:'/selectCity',

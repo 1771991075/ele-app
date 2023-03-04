@@ -19,9 +19,9 @@ export default function Home() {
 
     useEffect(() => {
         //获取地区详细信息
-        if (!geohash) {
+        if (!search.get('geohash')) {
             getNowCity().then(res => {
-                getHeohash(res.data.geohash).then(res => setCityInfo(res.data))
+                getHeohash(res.data.latitude+','+res.data.longitude).then(res => setCityInfo(res.data))
             })
         } else {
             getHeohash(geohash).then(res => setCityInfo(res.data))
@@ -47,7 +47,7 @@ export default function Home() {
                 </div>
             </div>
             <div className="home_swiper">
-                <HomeSwiper homeCateList={homeCateList}></HomeSwiper>
+                <HomeSwiper homeCateList={homeCateList} latitude={cityInfo.latitude} longitude={cityInfo.longitude}></HomeSwiper>
             </div>
             <div className="home_mid">
                 <p className="fjsj"><ShopO fontSize={18} /> 附近商家</p>
