@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './index.less'
-import { NavBar, Form ,Button,Input} from 'react-vant';
+import { NavBar, Form ,Button,Input,NoticeBar} from 'react-vant';
 import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
@@ -23,7 +23,11 @@ export default function Login() {
                     form={form}
                     onFinish={onFinish}
                     footer={
-                        <div style={{ margin: '16px 16px 0' }}>
+                        <div style={{ margin: '5px 0px 0' }}>
+                            <NoticeBar>
+                                <p>温馨提示:未注册过的账号，登录时将自动注册</p>
+                                <p>注册过的用户可凭账号密码登录</p>
+                            </NoticeBar>
                             <Button round nativeType='submit' type='primary' block>
                                 提交
                             </Button>
@@ -31,10 +35,9 @@ export default function Login() {
                     }
                 >
                     <Form.Item
-                        intro='确保这是唯一的用户名'
                         rules={[{ required: true, message: '请填写用户名' }]}
                         name='username'
-                        label='用户名'
+                        label='账号'
                     >
                         <Input placeholder='请输入用户名' />
                     </Form.Item>
