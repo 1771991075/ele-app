@@ -8,6 +8,7 @@ let Mine = lazy(()=>import('../views/Mine'))
 let SearchInfo = lazy(()=>import('../views/SearchInfo'))
 let Order = lazy(()=>import('../views/Order'))
 let Cate = lazy(()=>import('../views/Cate'))
+let Login = lazy(()=>import('../views/Login'))
 let NotFound = lazy(()=>import('../component/NotFound'))
 
 
@@ -62,6 +63,11 @@ let elements = [
     {
         path:'/',
         element:<Navigate to={'/index/home'}></Navigate>,
+        author:false
+    },
+    {
+        path:'/login',
+        element:<Suspense fallback={'loading.....'}><Login/></Suspense>,
         author:false
     }
 ]

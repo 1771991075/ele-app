@@ -42,7 +42,7 @@ export default function Home() {
                 <div className="home_title" onClick={() => navigate('/selectCity')}>
                     <p>{cityInfo.name}</p>
                 </div>
-                <div>
+                <div onClick={()=>navigate('/login')}>
                     <span>登录</span>|<span>注册</span>
                 </div>
             </div>
