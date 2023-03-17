@@ -9,8 +9,12 @@ let getHomeCate = () =>sendHttp(`/v2/index_entry`,'get')
 //获取附近商家
 let getShop = (latitude,longitude) => sendHttp(`/shopping/restaurants?latitude=34.71803&longitude=113.642996`,'get')
 
+//获取商家详情
+let getShopInfo = (id) =>sendHttp(`/shopping/restaurant/${id}`,'get')
+
 export {
     getHeohash,
     getHomeCate,
-    getShop
+    getShop,
+    getShopInfo
 }
