@@ -10,6 +10,7 @@ let Order = lazy(()=>import('../views/Order'))
 let Cate = lazy(()=>import('../views/Cate'))
 let Login = lazy(()=>import('../views/Login'))
 let NotFound = lazy(()=>import('../component/NotFound'))
+let ShopInfo = lazy(()=>import('../views/ShopInfo'))
 
 
 let elements = [
@@ -68,6 +69,11 @@ let elements = [
     {
         path:'/login',
         element:<Suspense fallback={'loading.....'}><Login/></Suspense>,
+        author:false
+    },
+    {
+        path:'/shopinfo',
+        element:<Suspense fallback={'loading.....'}><ShopInfo/></Suspense>,
         author:false
     }
 ]
