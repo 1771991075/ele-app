@@ -54,7 +54,7 @@ export default function Home() {
                 {
                     shopList.length !== 0 && (shopList.map((item, index) => {
                         return (
-                            <div className="shopitem" key={index}>
+                            <div className="shopitem" key={index} onClick={()=>{navigate(`/shopinfo?id=${item.id}`)}}>
                                 <div className="shopitemleft">
                                     <img src={`https://elm.cangdu.org/img/${item.image_path}`} alt="" />
                                 </div>
