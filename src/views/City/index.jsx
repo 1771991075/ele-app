@@ -8,7 +8,6 @@ export default function City() {
     //获取传递过来的城市id
     let [search] = useSearchParams()
     let id = search.get('id')
-
     let [cityInfo, setCityInfo] = useState({})
     let [keyword, setKeyword] = useState('')
     let [cityInfoList, setCityInfoList] = useState([])
@@ -33,7 +32,6 @@ export default function City() {
             Toast.info('搜索内容不能为空')
         } else {
             getCityMsg(id, keyword).then(res => {
-                console.log(res.data)
                 setCityInfoList(res.data)
             })
         }
