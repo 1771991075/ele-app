@@ -1,17 +1,25 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './index.less'
-import { NavBar, Form ,Button,Input,NoticeBar} from 'react-vant';
+import { NavBar, Button, Input, Cell } from 'react-vant';
 import { useNavigate } from 'react-router-dom';
+import {getCaptchas} from '../../api/login';
 
 export default function Login() {
     let navigate = useNavigate()
     let [username, setUsername] = useState('')
     let [password, setPossword] = useState('')
-    const [form] = Form.useForm()
+    let [captcha, setCaptcha] = useState('')
+    let [captchasUrl,setCaptchasUrl] = useState('')
+    //更换验证码
 
-    const onFinish = values => {
-        console.log(values)
-    }
+
+    useEffect(()=>{
+        getCaptchas().then(res=>{
+            console.log(res);
+            setCaptchasUrl(res.data.code)
+        })
+    },[])
+
     return (
         <div className='login'>
             <NavBar
@@ -19,36 +27,39 @@ export default function Login() {
                 onClickLeft={() => navigate(-1)}
             />
             <div className='loginuser'>
-                <Form
-                    form={form}
-                    onFinish={onFinish}
-                    footer={
-                        <div style={{ margin: '5px 0px 0' }}>
-                            <NoticeBar>
-                                <p>温馨提示:未注册过的账号，登录时将自动注册</p>
-                                <p>注册过的用户可凭账号密码登录</p>
-                            </NoticeBar>
-                            <Button round nativeType='submit' type='primary' block>
-                                提交
-                            </Button>
+                <Cell>
+                    <Input
+                        value={username}
+                        onChange={(value) => { setUsername(value) }}
+                        placeholder='账号'
+                    />
+                </Cell>
+                <Cell>
+                    <Input
+                        value={password}
+                        type='password'
+                        onChange={(value) => { setPossword(value) }}
+                        placeholder='密码'
+                    />
+                </Cell>
+                <Cell className='yzm'>
+                    <Input
+                        className='yzmipt'
+                        value={captcha}
+                        onChange={(value) => { setCaptcha(value) }}
+                        placeholder='验证码'
+                    />
+                    <div className='yzmimg'>
+                        <img src={captchasUrl} alt="" className='yzmimgg'/>
+                        <div>
+                            <p>看不清</p>
+                            <p className='hzy' onClick={()=>{}}>换一张</p>
                         </div>
-                    }
-                >
-                    <Form.Item
-                        rules={[{ required: true, message: '请填写用户名' }]}
-                        name='username'
-                        label='账号'
-                    >
-                        <Input placeholder='请输入用户名' />
-                    </Form.Item>
-                    <Form.Item
-                        rules={[{ required: true, message: '请填写密码' }]}
-                        name='password'
-                        label='密码'
-                    >
-                        <Input placeholder='请输入密码' />
-                    </Form.Item>
-                </Form>
+                    </div>
+                </Cell>
+                <p className='wxts'>温馨提示:未注册过的账号，登录时将自动注册</p>
+                <p className='wxts'>注册过的用户可凭账号密码登录</p>
+                <Button className='loginbtn'>登录</Button>
             </div>
         </div>
     )
