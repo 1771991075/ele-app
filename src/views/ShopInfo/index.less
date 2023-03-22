@@ -1,0 +1,40 @@
+.shopinfo{
+    width: 100%;
+    height: 100%;
+    .shopinfo_top{
+        width: 100%;
+        height: 120px;
+        position: relative;
+        background-color: rgba(44,44,44,.2);
+        .shopinfo_top1{
+            width: 100%;
+            height: 120px;
+            background-size: cover;
+            filter: blur(3px);
+            z-index: -1;
+        }
+        .shopinfo_top2{
+            width: 90%;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            .shoptx{
+                width: 80px;
+                height: 80px;
+            }
+            .shopinfo_info{
+                margin-left: 20px;
+                color: #848484;
+                p{
+                    width: 90%;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    font-size: 14px;
+                    margin: 10px 0px;
+                }
+            }
+        }
+    }
+}
