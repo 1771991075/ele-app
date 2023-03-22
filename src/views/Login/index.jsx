@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import './index.less'
-import { NavBar, Button, Input, Cell } from 'react-vant';
+import { NavBar, Button, Input, Cell, Toast } from 'react-vant';
 import { useNavigate } from 'react-router-dom';
-import {getCaptchas} from '../../api/login';
+import {getCaptchas ,userLogin} from '../../api/login';
 
 export default function Login() {
     let navigate = useNavigate()
@@ -10,15 +10,25 @@ export default function Login() {
     let [password, setPossword] = useState('')
     let [captcha, setCaptcha] = useState('')
     let [captchasUrl,setCaptchasUrl] = useState('')
-    //更换验证码
-
-
+    //获取验证码
+    let getNewCaptchas = async ()=>{
+        let res = await getCaptchas()
+        setCaptchasUrl(res.data.code)
+    }
     useEffect(()=>{
-        getCaptchas().then(res=>{
-            console.log(res);
-            setCaptchasUrl(res.data.code)
-        })
+        //获取验证码
+        getNewCaptchas()
     },[])
+    //登录
+    let loginbtn = async () =>{
+        let data = {
+            username,
+            password,
+            captcha_code:captcha
+        }
+        let res = await userLogin(data)
+        Toast.info(res.data.message)
+    }
 
     return (
         <div className='login'>
@@ -53,13 +63,13 @@ export default function Login() {
                         <img src={captchasUrl} alt="" className='yzmimgg'/>
                         <div>
                             <p>看不清</p>
-                            <p className='hzy' onClick={()=>{}}>换一张</p>
+                            <p className='hzy' onClick={()=>{getNewCaptchas()}}>换一张</p>
                         </div>
                     </div>
                 </Cell>
                 <p className='wxts'>温馨提示:未注册过的账号，登录时将自动注册</p>
                 <p className='wxts'>注册过的用户可凭账号密码登录</p>
-                <Button className='loginbtn'>登录</Button>
+                <Button className='loginbtn' onClick={()=>{loginbtn()}}>登录</Button>
             </div>
         </div>
     )
